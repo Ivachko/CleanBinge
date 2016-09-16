@@ -1,3 +1,8 @@
+<?php
+namespace BingeCoding;
+include 'Include/Controller.php';
+$a = new Controller();
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
     <head>
@@ -20,18 +25,30 @@
          </button>
          <a href="index.php" class="navbar-brand">Accueil</a>
        </div>
-       <div id="navbar" class="navbar-collapse collapse">
-         <form class="navbar-form navbar-right">
-           <div class="form-group">
-             <input type="text" placeholder="Login" class="form-control">
-           </div>
-           <div class="form-group">
-             <input type="password" placeholder="Password" class="form-control">
-           </div>
-           <button type="submit" class="btn btn-success">Connexion</button>
-           <a href="inscription.php"><button href="inscription.php"type="button" class="btn btn-success">Inscription</button></a>
-         </form>
-       </div><!--/.navbar-collapse -->
+         <?php if(!isset($_SESSION['pseudo'])&& empty($_SESSION['pseudo'])){
+             ?>
+
+                 <div id="navbar" class="navbar-collapse collapse">
+                     <form class="navbar-form navbar-right">
+                         <div class="form-group">
+                             <input type="text" placeholder="Login" class="form-control">
+                         </div>
+                         <div class="form-group">
+                             <input type="password" placeholder="Password" class="form-control">
+                         </div>
+                         <button type="submit" class="btn btn-success">Connexion</button>
+                         <a href="inscription.php"><button href="inscription.php"type="button" class="btn btn-success">Inscription</button></a>
+                     </form>
+                 </div><!--/.navbar-collapse -->
+
+
+         <?php
+}else {?>
+             <div id="navbar" class="navbar-collapse collapse">
+             <p>Bonjour <?php echo $_SESSION['pseudo']?></p>
+             </div><!--/.navbar-collapse -->
+
+         <?php } ?>
      </div>
    </nav>
   <body>
