@@ -1,13 +1,15 @@
 <?php
+namespace BingeCoding;
 include 'header.php';
-?>
 
-<<<<<<< HEAD
-=======
+$a::Need("Include/Utilisateur.php");
+
+
+?>
 
 
   <body>
->>>>>>> poutine
+
     <script>
       window.fbAsyncInit = function() {
         FB.init({
@@ -107,55 +109,15 @@ include 'header.php';
       }
     </script>
 
-<<<<<<< HEAD
-=======
-
-<?php  
-$nom = $_POST['nom'];
-$prenom = $_POST['prenom'];
-$email = $_POST['email'];
-$pseudo = $_POST['pseudo'];
-$password = $_POST['password'];
-?>
 
 
 
 
-   <nav class="navbar navbar-inverse navbar-fixed-top">
-     <div class="container">
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-           <span class="sr-only">Toggle navigation</span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="#">Accueil</a>
-       </div>
-       <div id="navbar" class="navbar-collapse collapse">
-         <form class="navbar-form navbar-right">
-<div class="form-group">
-   <input type "text" placeholder="Recherche" class="form-control"
 
-  <div/>
-  <button type="submit" class="btn btn-success">OK</button>
 
-           <div class="form-group">
 
-             <input type="text" placeholder="Email" class="form-control">
-           </div>
-           <div class="form-group">
-             <input type="password" placeholder="Password" class="form-control">
-           </div>
-           <button type="submit" class="btn btn-success">Se connecter</button>
-           <button type="Inscription" class="btn btn-success">Inscription</button>
 
-         </form>
-       </div><!--/.navbar-collapse -->
-     </div>
-   </nav>
 
->>>>>>> poutine
    <hr>
 
    <!-- Main jumbotron for a primary marketing message or call to action -->
@@ -205,36 +167,46 @@ $password = $_POST['password'];
 
 <div id="status">
 </div>
-<?php
-        echo' <form class="form-inline">
+ <form class="form-inline" method="post" action="#">
            <div class="form-group">
              <label class="sr-only" for="nom">Nom</label>
-          &nbsp   <input class="form-control" id="nom" placeholder="Nom">
+          &nbsp   <input class="form-control"  name ="nom" id="nom" placeholder="Nom">
            </div>
            <div class="form-group">
              <label class="sr-only" for="Prenom">Prénom</label>
-          &nbsp   <input class="form-control" id="Prénom" placeholder="Prénom">
+          &nbsp   <input class="form-control" name ="prenom" id="Prénom" placeholder="Prénom">
            </div>
            <div class="form-group">
              <label class="sr-only" for="pseudo">Pseudonyme</label>
-          &nbsp   <input type="pseudo" class="form-control" id="pseudo" placeholder="Pseudo"required>
+          &nbsp   <input type="pseudo" class="form-control" name ="pseudo" id="pseudo" placeholder="Pseudo"required>
            </div>
          <div class="form-group">
            <label class="sr-only" for="exampleInputEmail3">Email address</label>
-&nbsp<input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email" required>
+&nbsp<input type="email" class="form-control" name ="email" id="exampleInputEmail3" placeholder="Email" required>
          </div>
          <div class="form-group">
            <label class="sr-only" for="exampleInputPassword3">Password</label>
-           &nbsp<input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" required>
+          nbsp<input type="password" class="form-control" name="password" id="exampleInputPassword3" placeholder="Password" required>
          </div>
-         &nbsp &nbsp &nbsp<button type="submit" class="btn btn-primary">Sign in</button>
+         &nbsp &nbsp &nbsp<button type="submit" class="btn btn-primary">Inscription</button>
        </form>
 
        </div>
-'; ?>
-</div>
 
-<?php
+</div>
+<?php if(isset($_POST)&&!empty($_POST)){
+    extract($_POST);
+    $user = new Utilisateur($pseudo,$password,$email,$nom,$prenom);
+    $user->Adduser();
+    $_SESSION['pseudo']=$pseudo;
+    $_SESSION['email']=$email;
+
+
+
+
+} ?>
+
+       <?php
 include 'footer.php';
 ?>
 
